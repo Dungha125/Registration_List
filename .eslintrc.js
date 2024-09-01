@@ -4,6 +4,9 @@ module.exports = {
       'plugin:react/recommended',
       'plugin:@typescript-eslint/recommended',
       'prettier',
+      "react-app",
+    "react-app/jest"
+
     ],
     parserOptions: {
       ecmaVersion: 2020,
@@ -12,7 +15,7 @@ module.exports = {
     },
     plugins: ['react', '@typescript-eslint'],
     rules: {
-      // Add your custom rules here
+      "react/react-in-jsx-scope": "off"
     },
   };
   
