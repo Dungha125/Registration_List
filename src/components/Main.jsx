@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table, Input, Button, Spin, Alert } from 'antd';
 import 'antd/dist/reset.css'; // Import CSS của Ant Design
+import * as XLSX from 'xlsx';
 
 const StudentList = () => {
   const [students, setStudents] = useState([]);
@@ -37,8 +38,17 @@ const StudentList = () => {
     }
   }, [otp]);
 
+  const exportToExcel = () => {
+    const worksheet = XLSX.utils.json_to_sheet(students);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Students");
+
+    // Download the Excel file
+    XLSX.writeFile(workbook, "DanhSachSinhVien.xlsx");
+  };
+
   const columns = [
-    { title: 'Họ và tên', dataIndex: 'fullname', key: 'fullname' },
+    { title: 'Họ và tên', dataIndex: 'fullname', key: 'fullname' ,fixed: 'left' },
     { title: 'Giới tính', dataIndex: 'sex', key: 'sex' },
     { title: 'Ngày sinh', dataIndex: 'birthDate', key: 'birthDate' },
     { title: 'Quê quán', dataIndex: 'placeOfOrigin', key: 'placeOfOrigin' },
@@ -79,13 +89,14 @@ const StudentList = () => {
     </Button>
   </div>
   <Table 
-    columns={columns} 
-    dataSource={students} 
-    rowKey="studentCode" // Hoặc thuộc tính duy nhất khác nếu có
-    pagination={false} 
-  />
+        columns={columns} 
+        dataSource={students} 
+        rowKey="studentCode" 
+        pagination={false}
+        scroll={{ x: 'max-content', y: 400 }} 
+      />
   <div className="w-full flex justify-center mt-4">
-    <Button className="bg-green-600 text-white font-bold w-[6rem] h-[2rem] rounded-md">
+    <Button className="bg-green-600 text-white font-bold w-[6rem] h-[2rem] rounded-md" onClick={exportToExcel}>
       Xuất Excel
     </Button>
   </div>
