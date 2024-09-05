@@ -90,7 +90,7 @@ const StudentList = () => {
   </div>
   <Table 
         columns={columns} 
-        dataSource={students.slice(17)} 
+        dataSource={students.slice(18)} 
         rowKey="studentCode" 
         pagination={false}
         scroll={{ x: 'max-content', y: 400 }} 
@@ -99,7 +99,7 @@ const StudentList = () => {
     <Button className="bg-green-600 text-white font-bold w-[6rem] h-[2rem] rounded-md" onClick={exportToExcel}>
       Xuất Excel
     </Button>
-    <p className='text-sm text-neutral-500 font-light mx-[2rem] mt-[1rem]'>Danh sách có: {students.length - 17} đơn</p>
+    <p className='text-sm text-neutral-500 font-light mx-[2rem] mt-[1rem]'>Danh sách có: {students.length - 18} đơn</p>
   </div>
 </div>
   );
