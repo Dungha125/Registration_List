@@ -90,15 +90,16 @@ const StudentList = () => {
   </div>
   <Table 
         columns={columns} 
-        dataSource={students} 
+        dataSource={students.slice(17)} 
         rowKey="studentCode" 
         pagination={false}
         scroll={{ x: 'max-content', y: 400 }} 
       />
-  <div className="w-full flex justify-center mt-4">
+  <div className="w-full flex mt-4 items-center ">
     <Button className="bg-green-600 text-white font-bold w-[6rem] h-[2rem] rounded-md" onClick={exportToExcel}>
       Xuất Excel
     </Button>
+    <p className='text-sm text-neutral-500 font-light mx-[2rem] mt-[1rem]'>Danh sách có: {students.length - 17} đơn</p>
   </div>
 </div>
   );
